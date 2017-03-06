@@ -16,8 +16,8 @@ public class PropertiesUtil {
 		 * 配置文件的路径
 		 * 必需在src的cfg目录下
 		 */
-		private static String CONFIG1 = "/cfg/mysql.properties";
-		private static String CONFIG2 = "/cfg/mysql.properties";
+		private static String CONFIG1 = "/config/oracle1.properties";
+		private static String CONFIG2 = "/config/oracle2.properties";
 		//读取资源文件, 设置输入流
 		private static InputStream is;
 		//数据库驱动
@@ -28,7 +28,7 @@ public class PropertiesUtil {
 		public static String JDBC_USER;
 		//数据库密码
 		public static String JDBC_PASS;
-		public static int dataBaseNum=1;
+		public static int dataBaseNum=2;
 		static {
 			try {
 				if(dataBaseNum==1){

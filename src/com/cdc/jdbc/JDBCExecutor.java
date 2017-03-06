@@ -2,7 +2,7 @@ package com.cdc.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -20,7 +20,7 @@ public class JDBCExecutor {
 		//维护一个本类型的对象
 		private static JDBCExecutor jdbcExecutor;
 		//Statement对象,可以执行SQL语句并返回结果
-		private PreparedStatement stmt;
+		private Statement stmt;
 		
 		//私有构造器
 		private JDBCExecutor() {
@@ -30,7 +30,7 @@ public class JDBCExecutor {
 				//创建数据库连接
 				connection = DriverManager.getConnection(URL, USER, PASS);
 				//创建Statement对象
-				stmt = connection.prepareStatement("");
+				stmt =connection.createStatement();
 			} catch (Exception e) {
 				throw new JDBCException(e.getMessage());
 			}

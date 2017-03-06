@@ -2,6 +2,7 @@ package com.cdc.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.Vector;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -9,7 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 
 public class SelectUserFrame {
 
@@ -18,14 +24,37 @@ public class SelectUserFrame {
 	private JPanel bottomJpanel;
 	
 	private String[] items1=new String[]{"local","root"};
-	private String[] items2=new String[]{"user","mac","short","long"};
+	private String[] items2=new String[]{"user","mac"};
+	
+	
+	public static void main(String[] args) {
+		new SelectUserFrame();
+	}
 	
 	public SelectUserFrame() {
 		jFrame=new JFrame("查询用户");
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jFrame.setSize(new Dimension(800, 600));
 		jFrame.add(createTopJPanel(),BorderLayout.NORTH);
+		jFrame.add(createBottomJPanel(),BorderLayout.CENTER);
 		jFrame.setVisible(true);
+	}
+	
+	private JPanel createBottomJPanel(){
+		 bottomJpanel=new JPanel();
+		 bottomJpanel.setLayout(new BoxLayout(bottomJpanel, BoxLayout.Y_AXIS));
+		//设置列表
+			DefaultTableModel model = new DefaultTableModel(null, this.columns);
+			JTable table = new JTable(model);
+			table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			
+			JScrollPane jScrollPane = new JScrollPane(table);
+			jScrollPane.setPreferredSize(new Dimension(1000, 350));
+		
+		
+		 jScrollPane.add(table);
+		 bottomJpanel.add(jScrollPane);
+		 return bottomJpanel;
 	}
 	
 	private JPanel createTopJPanel(){
