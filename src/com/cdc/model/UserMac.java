@@ -5,6 +5,7 @@ package com.cdc.model;
  * TB_MCTM_USER_TERMINAL.platlevel as t_platlevel from C_USERINFO,
  * TB_MCTM_USER_TERMINAL where C_USERINFO.userno=TB_MCTM_USER_TERMINAL.userid 
  * and userno='iFaboo_TY_MPAD022';
+ * 900917068083
  * @author cdc
  *
  */

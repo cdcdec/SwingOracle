@@ -29,7 +29,7 @@ public class UserMacDaoImpl extends BaseDaoImpl implements UserMacDao {
 	
 	public static void main(String[] args) {
 		UserMacDaoImpl  userMacDaoImpl=new UserMacDaoImpl();
-		List<UserMac> lists =userMacDaoImpl.findUserMacByMac("900917068081");
+		List<UserMac> lists =userMacDaoImpl.findUserMacByUser("iFaboo_TY_MPAD022");
 		if(lists!=null && lists.size()>0){
 			System.out.println(lists.get(0).toString());
 		}else{

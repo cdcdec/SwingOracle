@@ -28,7 +28,7 @@ public class PropertiesUtil {
 		public static String JDBC_USER;
 		//数据库密码
 		public static String JDBC_PASS;
-		public static int dataBaseNum=2;
+		public static int dataBaseNum=1;
 		static {
 			try {
 				if(dataBaseNum==1){
