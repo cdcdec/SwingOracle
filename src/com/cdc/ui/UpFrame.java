@@ -1,7 +1,6 @@
 package com.cdc.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -127,12 +126,13 @@ public class UpFrame extends JFrame implements ActionListener,ItemListener{
 		jComboBox.addItemListener(this);
 		vbox.add(jComboBox);
 		vbox.add(Box.createVerticalStrut(20));
-		JPanel jPanelJButton=new JPanel(null);
+		JPanel  jPanel=new JPanel();
+		jPanel.setLayout(new BorderLayout());
 		jButton=new JButton("确定");
-		jButton.setBounds(0, 0, 200, 35);
-		jPanelJButton.add(jButton);
+		jButton.setPreferredSize(new Dimension(100, 35));
 		jButton.addActionListener(this);
-		vbox.add(jPanelJButton);
+		jPanel.add(jButton,BorderLayout.NORTH);
+		vbox.add(jPanel);
 		vbox.add(Box.createVerticalStrut(20));
 		middleJPanel.add(vbox,BorderLayout.CENTER);
 		return middleJPanel;
