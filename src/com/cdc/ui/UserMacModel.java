@@ -73,5 +73,11 @@ public class UserMacModel extends AbstractTableModel {
 		}
 		return null;
 	}
+	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 }
