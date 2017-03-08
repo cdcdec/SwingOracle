@@ -4,17 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class JDBCExecutor {
-	//获得驱动
-		private static String DRIVER = PropertiesUtil.JDBC_DRIVER;
-		//获得url
-		private static String URL = PropertiesUtil.JDBC_URL;
-		//获得连接数据库的用户名
-		private static String USER = PropertiesUtil.JDBC_USER;
-		//获得连接数据库的密码
-		private static String PASS = PropertiesUtil.JDBC_PASS;
 		//连接对象
 		private Connection connection;
 		//维护一个本类型的对象
@@ -25,10 +15,11 @@ public class JDBCExecutor {
 		//私有构造器
 		private JDBCExecutor() {
 			try {
+				PropertiesUtil.getJDBCProperties();
 				//初始化JDBC驱动并让驱动加载到jvm中
-				Class.forName(DRIVER);
+				Class.forName(PropertiesUtil.JDBC_DRIVER);
 				//创建数据库连接
-				connection = DriverManager.getConnection(URL, USER, PASS);
+				connection = DriverManager.getConnection(PropertiesUtil.JDBC_URL, PropertiesUtil.JDBC_USER, PropertiesUtil.JDBC_PASS);
 				//创建Statement对象
 				stmt =connection.createStatement();
 			} catch (Exception e) {

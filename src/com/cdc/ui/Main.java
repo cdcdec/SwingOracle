@@ -14,7 +14,6 @@ public class Main {
 		   UIUtils.setPreferredLookAndFeel();
 		    SwingUtilities.invokeLater(new Runnable() {
 		      public void run() {
-		        new PersonalUpFrame();
 		      }
 		    });
 		    

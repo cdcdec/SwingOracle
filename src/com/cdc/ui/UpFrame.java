@@ -6,8 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,27 +18,15 @@ import javax.swing.JTextField;
 
 import com.cdc.model.OrderAddress;
 
-public class UpFrame extends JFrame implements ActionListener,ItemListener{
+public class UpFrame extends JFrame{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1944211170507227023L;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-
-	}
 	
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource()==jComboBox){
-			System.out.println(((OrderAddress)jComboBox.getSelectedItem()).getUrlPath());
-		}
-	}
+	
 	
 	
 	private JPanel containJPanel;
@@ -106,31 +92,39 @@ public class UpFrame extends JFrame implements ActionListener,ItemListener{
 		 return leftJPanel;
 	}
 	
-	
+	private JTextField  jTextField1;
+	private JTextField  jTextField2;
+	private JTextField  jTextField3;
 	private JPanel createMiddleJPanel(){
 		middleJPanel=new JPanel();
 		Box vbox = Box.createVerticalBox();
 		vbox.add(Box.createVerticalStrut(20));
-		JTextField  jTextField1=createJTextField("用户名",30);
+		jTextField1=createJTextField("用户名",30);
 		vbox.add(jTextField1);
 		vbox.add(Box.createVerticalStrut(20));
-		JTextField  jTextField2=createJTextField("mac",30);
+		jTextField2=createJTextField("mac",30);
 		vbox.add(jTextField2);
 		vbox.add(Box.createVerticalStrut(20));
-		JTextField  jTextField3=createJTextField("平台级别",30);
+		jTextField3=createJTextField("平台级别",30);
 		vbox.add(jTextField3);
 		vbox.add(Box.createVerticalStrut(20));
 		List<OrderAddress> lists=getOrderAddress();
 		jComboBox=new JComboBox<OrderAddress>(new OrderAddressComboBoxModel(lists));
 		jComboBox.setPreferredSize(new Dimension (100,35));
-		jComboBox.addItemListener(this);
 		vbox.add(jComboBox);
 		vbox.add(Box.createVerticalStrut(20));
 		JPanel  jPanel=new JPanel();
 		jPanel.setLayout(new BorderLayout());
 		jButton=new JButton("确定");
 		jButton.setPreferredSize(new Dimension(100, 35));
-		jButton.addActionListener(this);
+		jButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				okButton();
+			}
+		});
 		jPanel.add(jButton,BorderLayout.NORTH);
 		vbox.add(jPanel);
 		vbox.add(Box.createVerticalStrut(20));
@@ -151,11 +145,24 @@ public class UpFrame extends JFrame implements ActionListener,ItemListener{
 	
 	private List<OrderAddress>  getOrderAddress(){
 		List<OrderAddress> lists=new ArrayList<OrderAddress>();
-		lists.add(new OrderAddress("应急", "url1"));
-		lists.add(new OrderAddress("个性", "url2"));
-		lists.add(new OrderAddress("普通", "url3"));
-		lists.add(new OrderAddress("直播", "url4"));
+		lists.add(new OrderAddress("应急1", "url1"));
+		lists.add(new OrderAddress("个性1", "http://192.168.0.162:8080/IfabooMIUP/ifaboo_immediate_android.jsp"));
+		lists.add(new OrderAddress("普通1", "url3"));
+		lists.add(new OrderAddress("直播1", "url4"));
 		return lists;
+	}
+	
+	private void okButton(){
+		String name=jTextField1.getText().replaceAll(" ", "");
+		String mac=jTextField2.getText().replaceAll(" ", "");
+		String platLevel=jTextField3.getText().replaceAll(" ", "");
+		OrderAddress  orderAddress=(OrderAddress) jComboBox.getSelectedItem();
+		String urlPath=orderAddress.getUrlPath();
+		System.out.println(name+","+mac+","+platLevel+","+urlPath);
+		//关闭本页面
+		this.dispose();
+		
+		new SelectUserFrame();
 	}
 	
 	public static void main(String[] args) {

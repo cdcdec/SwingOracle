@@ -23,9 +23,12 @@ public class PersonalUpFrame extends JFrame {
 	private JPanel  topPanel;
 	private JPanel  bottomPanel;
 	
+	private String urlPath;
 	
-	public PersonalUpFrame() {
+	
+	public PersonalUpFrame(String urlPath) {
 		super("个性化订单上传");
+		this.urlPath=urlPath;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panelContainer = new JPanel();
 		panelContainer.setOpaque(true);
@@ -37,7 +40,7 @@ public class PersonalUpFrame extends JFrame {
 		c1.weightx=1.0;
 		c1.weighty=1.0;
 		c1.fill=GridBagConstraints.BOTH;
-		panelContainer.add(createTopJPanel("http://localhost:8080/test/index.html"), c1);
+		panelContainer.add(createTopJPanel(urlPath), c1);
 		
 		GridBagConstraints c2 = new GridBagConstraints();
 		c2.gridx=1;

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,13 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
 import com.cdc.dao.UserMacDaoImpl;
-import com.cdc.jdbc.PropertiesUtil;
 import com.cdc.model.UserMac;
 import com.cdc.service.UserMacServiceImpl;
 
-public class SelectUserFrame {
+public class SelectUserFrameLocal {
 
 	private JFrame jFrame;
 	private JPanel topJpanel;
@@ -37,7 +34,7 @@ public class SelectUserFrame {
 
 	
 
-	public SelectUserFrame() {
+	public SelectUserFrameLocal() {
 		jFrame = new JFrame("查询用户");
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jFrame.setSize(new Dimension(800, 600));
@@ -71,8 +68,6 @@ public class SelectUserFrame {
 	}
 
 	JTextField jtField;
-	
-	List<UserMac> lists=new ArrayList<UserMac>();
 
 	private JPanel createTopJPanel() {
 		topJpanel = new JPanel();
@@ -93,26 +88,17 @@ public class SelectUserFrame {
 		topJpanel.add(Box.createVerticalStrut(15));
 		JButton jButton = new JButton("查询");
 		jButton.setPreferredSize(new Dimension(100, 30));
-		
 		jButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String str1 = (String) jComboBox1.getSelectedItem();
-				System.out.println("str1===str1=="+str1);
-				lists.removeAll(lists);
-				if("local".equals(str1)){
-					PropertiesUtil.dataBaseName="local";
-				}else if("root".equals(str1)){
-					PropertiesUtil.dataBaseName="root";
-				}
 				String str2 = (String) jComboBox2.getSelectedItem();
 				String str3 = (String) jtField.getText();
+				System.out.println(str2);
 				if (str2.equals("user")) {
-					lists=(List<UserMac>) userMacServiceImpl
+					List<UserMac> lists = (List<UserMac>) userMacServiceImpl
 							.getUserMacByUser(str3);
-					System.out.println(lists.size());
 					if (lists.size() > 0) {
 						userMacModel.setData(lists);
 					} else {
@@ -120,7 +106,7 @@ public class SelectUserFrame {
 					}
 
 				} else if (str2.equals("mac")) {
-					lists = (List<UserMac>) userMacServiceImpl
+					List<UserMac> lists = (List<UserMac>) userMacServiceImpl
 							.getUserMacByMac(str3);
 					if (lists.size() > 0) {
 						userMacModel.setData(lists);
@@ -139,7 +125,7 @@ public class SelectUserFrame {
 	}
 	
 	public static void main(String[] args) {
-		new SelectUserFrame();
+		new SelectUserFrameLocal();
 	}
 
 }
